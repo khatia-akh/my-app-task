@@ -7,8 +7,11 @@ import {
   TouchableOpacity,
   Modal,
   StyleSheet,
+  Image,
 } from "react-native";
 import { strings } from "../utils/localization/index";
+
+import DropDownIcon from "../../assets/Vector.png";
 
 export const TextInputForm = ({ onChangeText, name, placeholder }) => {
   return (
@@ -21,11 +24,16 @@ export const TextInputForm = ({ onChangeText, name, placeholder }) => {
   );
 };
 
-export const NumsInputForm = ({ onChangeText, value, placeholder }) => {
+export const NumsInputForm = ({
+  onChangeText,
+  value,
+  placeholder,
+  keyboardType,
+}) => {
   return (
     <TextInput
       placeholder={placeholder}
-      keyboardType="numeric"
+      keyboardType={keyboardType}
       style={styles.textInput}
       onChangeText={onChangeText}
       value={value}
@@ -61,7 +69,11 @@ export const DropDownInputForm = ({ setBloodType, bloodType }) => {
         }}
       >
         <Text>{bloodType ? bloodType : strings("selectGroup")}</Text>
+        <View style={styles.dropdownIconView}>
+          <Image style={styles.img} source={DropDownIcon} />
+        </View>
       </TouchableOpacity>
+
       {visible && (
         <View style={styles.dropDownItemsContainer}>
           <MenuItem text="blood group A" />
@@ -86,11 +98,13 @@ const styles = StyleSheet.create({
     height: 50,
     // backgroundColor: "aqua",
     marginTop: 10,
-    justifyContent: "center",
+    justifyContent: "space-between",
+    alignItems: "center",
     paddingHorizontal: 12,
     borderWidth: 1,
     borderColor: "gray",
     borderRadius: 4,
+    flexDirection: "row",
   },
   dropDownItemsContainer: {
     width: "100%",
@@ -107,5 +121,12 @@ const styles = StyleSheet.create({
     borderColor: "gray",
     borderRadius: 4,
     padding: 10,
+  },
+  img: { width: "100%", height: "100%" },
+  dropdownIconView: {
+    width: 15,
+    height: 15,
+    marginTop: 8,
+    marginLeft: 10,
   },
 });

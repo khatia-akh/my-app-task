@@ -5,6 +5,7 @@ import { View, StyleSheet, Text, TouchableOpacity, Image } from "react-native";
 import { strings, setLocale } from "../utils/localization/index";
 import EN from "../../assets/en.png";
 import RU from "../../assets/ru.png";
+import DropDownIcon from "../../assets/Vector.png";
 
 const LangDropDownMenu = ({ language, setLanguage, dropdown, setDropdown }) => {
   return (
@@ -19,6 +20,9 @@ const LangDropDownMenu = ({ language, setLanguage, dropdown, setDropdown }) => {
           <Image style={styles.img} source={language == "EN" ? EN : RU} />
         </View>
         <Text>{language}</Text>
+        <View style={styles.dropdownIconView}>
+          <Image style={styles.img} source={DropDownIcon} />
+        </View>
       </TouchableOpacity>
       {dropdown && (
         <View style={styles.dropdownView}>
@@ -82,4 +86,10 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   img: { width: "100%", height: "100%" },
+  dropdownIconView: {
+    width: 15,
+    height: 15,
+    marginTop: 8,
+    marginLeft: 10,
+  },
 });

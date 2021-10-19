@@ -8,7 +8,7 @@ function AppointmentsScreen() {
     <>
       <Header />
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>Settings!</Text>
+        <Text>Appointments Screen!</Text>
       </View>
     </>
   );

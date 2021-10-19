@@ -27,12 +27,11 @@ const DiagnosticsScreen = () => {
   function onCheckmarkPress() {
     setHasCovid(!hasCovid);
   }
-  console.log("--------------------********************", data);
   const onSave = () => {
     name == "" || birthDate == "" || bloodType == "" || bodyTemperature == ""
-      ? alert("fill all feialds")
+      ? alert("fill all fields")
       : !birthDateRgx(birthDate)
-      ? alert("birth date is false")
+      ? alert("enter the correct date (dd/mm/yyyy)")
       : (setData({ name, birthDate, bloodType, bodyTemperature, hasCovid }),
         alert("saved"),
         setName(""),
@@ -43,7 +42,6 @@ const DiagnosticsScreen = () => {
   };
 
   const birthDateRgx = (birhD) => {
-    // const birthRgx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
     var birthRgx =
       /^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|(([1][26]|[2468][048]|[3579][26])00))))$/g;
 
@@ -53,6 +51,7 @@ const DiagnosticsScreen = () => {
       return false;
     }
   };
+  console.log("data-********************->", data);
 
   useEffect(() => {}, [language]);
   return (
@@ -81,6 +80,7 @@ const DiagnosticsScreen = () => {
           value={birthDate}
           onChangeText={(txt) => setBirthDate(txt)}
           placeholder={"dd/mm/yyyy"}
+          keyboardType="text"
         />
         <Text style={styles.inputTitle}>{strings("bloodType")}</Text>
 
@@ -91,6 +91,7 @@ const DiagnosticsScreen = () => {
           value={bodyTemperature}
           onChangeText={(txt) => setBodyTemperature(txt)}
           placeholder={strings("clickAndType")}
+          keyboardType="numeric"
         />
 
         <View style={styles.checkBoxView}>
