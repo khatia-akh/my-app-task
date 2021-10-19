@@ -12,7 +12,13 @@ import Header from "../components/header";
 
 import CheckBox from "../components/checkbox";
 
+import { useSelector, useDispatch } from "react-redux";
+import { updateDiagnosState } from "../reducers/diagnosticSlice";
+
 const DiagnosticsScreen = () => {
+  const diagnos = useSelector((state) => state.diagnostic.value);
+  const dispatch = useDispatch();
+
   const [language, setLanguage] = useState("EN");
   const [dropdown, setDropdown] = useState(false);
 
@@ -32,7 +38,15 @@ const DiagnosticsScreen = () => {
       ? alert("fill all fields")
       : !birthDateRgx(birthDate)
       ? alert("enter the correct date (dd/mm/yyyy)")
-      : (setData({ name, birthDate, bloodType, bodyTemperature, hasCovid }),
+      : (dispatch(
+          updateDiagnosState({
+            name,
+            birthDate,
+            bloodType,
+            bodyTemperature,
+            hasCovid,
+          })
+        ),
         alert("saved"),
         setName(""),
         setBirthDate(""),
@@ -51,7 +65,7 @@ const DiagnosticsScreen = () => {
       return false;
     }
   };
-  console.log("data-********************->", data);
+  console.log("data-********************->", diagnos);
 
   useEffect(() => {}, [language]);
   return (
@@ -80,7 +94,7 @@ const DiagnosticsScreen = () => {
           value={birthDate}
           onChangeText={(txt) => setBirthDate(txt)}
           placeholder={"dd/mm/yyyy"}
-          keyboardType="text"
+          keyboardType="default"
         />
         <Text style={styles.inputTitle}>{strings("bloodType")}</Text>
 
