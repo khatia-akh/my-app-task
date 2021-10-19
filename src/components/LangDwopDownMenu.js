@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity, Image } from "react-native";
 
 import { strings, setLocale } from "../utils/localization/index";
+import EN from "../../assets/en.png";
+import RU from "../../assets/ru.png";
 
 const LangDropDownMenu = ({ language, setLanguage, dropdown, setDropdown }) => {
   return (
@@ -13,6 +15,9 @@ const LangDropDownMenu = ({ language, setLanguage, dropdown, setDropdown }) => {
         }}
         style={styles.centerView}
       >
+        <View style={styles.imgView}>
+          <Image style={styles.img} source={language == "EN" ? EN : RU} />
+        </View>
         <Text>{language}</Text>
       </TouchableOpacity>
       {dropdown && (
@@ -25,6 +30,9 @@ const LangDropDownMenu = ({ language, setLanguage, dropdown, setDropdown }) => {
             }}
             style={styles.centerView}
           >
+            <View style={styles.imgView}>
+              <Image style={styles.img} source={language == "EN" ? RU : EN} />
+            </View>
             <Text>{language == "EN" ? "RU" : "EN"}</Text>
           </TouchableOpacity>
           {/* <TouchableOpacity
@@ -50,6 +58,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 20,
     right: 20,
+    zIndex: 200,
   },
   centerView: {
     width: 120,
@@ -59,10 +68,18 @@ const styles = StyleSheet.create({
     borderColor: "#C6CACC",
     justifyContent: "center",
     alignItems: "center",
+    zIndex: 100,
+    flexDirection: "row",
   },
   dropdownView: {
     // height: 80,
     width: 120,
     // backgroundColor: "aqua",
   },
+  imgView: {
+    width: 42,
+    height: 31,
+    marginRight: 5,
+  },
+  img: { width: "100%", height: "100%" },
 });

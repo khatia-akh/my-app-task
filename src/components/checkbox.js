@@ -12,7 +12,7 @@ const CheckBox = ({ onPress, hasCovid }) => {
       >
         {hasCovid && <Ionicons name="checkmark" size={24} color="white" />}
       </Pressable>
-      <Text>{strings("coronavirus")}</Text>
+      <Text style={styles.checkboxTxt}>{strings("coronavirus")}</Text>
     </View>
   );
 };
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   },
 
   checkboxChecked: {
-    backgroundColor: "#58CB2F",
+    backgroundColor: "#2196F3",
   },
 
   appContainer: {
@@ -59,5 +59,11 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     // fontWeight: 500,
     fontSize: 18,
+  },
+  checkboxTxt: {
+    color: "#000000",
+    fontSize: 14,
+    lineHeight: 19,
+    maxWidth: 300,
   },
 });

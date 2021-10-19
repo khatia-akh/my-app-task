@@ -4,6 +4,11 @@
     "save":"Save",
     "clickAndType":"Click and type",
     "selectGroup":"Select group",
-    "observation":"Observation"
+    "observation":"Observation",
+    "name":"Name",
+    "birthday":"Birthday",
+    "bloodType":"Blood type",
+    "bodyTemperature":"Body temperature"
+
 
 }

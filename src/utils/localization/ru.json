@@ -4,9 +4,11 @@
     "save":"Сохранить",
     "clickAndType":"Кликните и набирайте",
     "selectGroup":"Выберите группу",
-    "observation":"Observation"
-
-    
+    "observation":"Observation",
+    "name":"Имя",
+    "birthday":"День рождения",
+    "bloodType":"Группа крови",    
+    "bodyTemperature":"Температура тела"
 
 
 }
