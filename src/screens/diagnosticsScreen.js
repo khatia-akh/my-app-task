@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import LangDropDownMenu from "../components/LangDwopDownMenu";
 import { strings, setLocale } from "../utils/localization/index";
 import {
@@ -8,7 +14,6 @@ import {
   NumsInputForm,
   DropDownInputForm,
 } from "../components/textInputForms";
-import Header from "../components/header";
 
 import CheckBox from "../components/checkbox";
 
@@ -65,60 +70,56 @@ const DiagnosticsScreen = () => {
       return false;
     }
   };
-  console.log("data-********************->", diagnos);
 
   useEffect(() => {}, [language]);
   return (
-    <>
-      <Header />
-      <View style={styles.container}>
-        <Text style={styles.title}>{strings("observation")}</Text>
-        {/* <Text style={styles.inputTitle}>{strings("name")}</Text> */}
-        <LangDropDownMenu
-          language={language}
-          setLanguage={setLanguage}
-          dropdown={dropdown}
-          setDropdown={setDropdown}
-        />
-        <Text style={styles.inputTitle}>{strings("name")}</Text>
+    <ScrollView style={styles.container}>
+      <Text style={styles.title}>{strings("observation")}</Text>
+      {/* <Text style={styles.inputTitle}>{strings("name")}</Text> */}
+      <LangDropDownMenu
+        language={language}
+        setLanguage={setLanguage}
+        dropdown={dropdown}
+        setDropdown={setDropdown}
+      />
+      <Text style={styles.inputTitle}>{strings("name")}</Text>
 
-        <TextInputForm
-          name={name}
-          onChangeText={(txt) => setName(txt)}
-          placeholder={strings("clickAndType")}
-        />
-        {/* {name == "" ? <Text>empty</Text> : null} */}
-        <Text style={styles.inputTitle}>{strings("birthday")}</Text>
+      <TextInputForm
+        name={name}
+        onChangeText={(txt) => setName(txt)}
+        placeholder={strings("clickAndType")}
+      />
+      {/* {name == "" ? <Text>empty</Text> : null} */}
+      <Text style={styles.inputTitle}>{strings("birthday")}</Text>
 
-        <NumsInputForm
-          value={birthDate}
-          onChangeText={(txt) => setBirthDate(txt)}
-          placeholder={"dd/mm/yyyy"}
-          keyboardType="default"
-        />
-        <Text style={styles.inputTitle}>{strings("bloodType")}</Text>
+      <NumsInputForm
+        value={birthDate}
+        onChangeText={(txt) => setBirthDate(txt)}
+        placeholder={"dd/mm/yyyy"}
+        keyboardType="default"
+      />
+      <Text style={styles.inputTitle}>{strings("bloodType")}</Text>
 
-        <DropDownInputForm bloodType={bloodType} setBloodType={setBloodType} />
-        <Text style={styles.inputTitle}>{strings("bodyTemperature")}</Text>
+      <DropDownInputForm bloodType={bloodType} setBloodType={setBloodType} />
+      <Text style={styles.inputTitle}>{strings("bodyTemperature")}</Text>
 
-        <NumsInputForm
-          value={bodyTemperature}
-          onChangeText={(txt) => setBodyTemperature(txt)}
-          placeholder={strings("clickAndType")}
-          keyboardType="numeric"
-        />
+      <NumsInputForm
+        value={bodyTemperature}
+        onChangeText={(txt) => setBodyTemperature(txt)}
+        placeholder={strings("clickAndType")}
+        keyboardType="numeric"
+      />
 
-        <View style={styles.checkBoxView}>
-          <CheckBox onPress={onCheckmarkPress} hasCovid={hasCovid} />
-        </View>
-
-        <View style={{ alignItems: "flex-end" }}>
-          <TouchableOpacity onPress={onSave} style={styles.button}>
-            <Text style={styles.btnTxt}>{strings("save")}</Text>
-          </TouchableOpacity>
-        </View>
+      <View style={styles.checkBoxView}>
+        <CheckBox onPress={onCheckmarkPress} hasCovid={hasCovid} />
       </View>
-    </>
+
+      <View style={{ alignItems: "flex-end" }}>
+        <TouchableOpacity onPress={onSave} style={styles.button}>
+          <Text style={styles.btnTxt}>{strings("save")}</Text>
+        </TouchableOpacity>
+      </View>
+    </ScrollView>
   );
 };
 
